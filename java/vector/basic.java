@@ -11,5 +11,7 @@ class vec{
         System.out.println(chonchu);
         chonchu.remove(1);
         System.out.println(chonchu);
+        Collections.reverse(chonchu);
+        System.out.println(chonchu);
     }
 }
