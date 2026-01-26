@@ -5,3 +5,6 @@ temp.cpp
 bu.cpp
 bu.java
 __pycache__
+temp/
+.cph/
+*.mp4

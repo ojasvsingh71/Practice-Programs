@@ -1,28 +1,28 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include<unordered_set>
+#include<bits/stdc++.h>
 using namespace std;
-
+ 
 int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
+ 
+ 
+    int t;
+    cin>>t;
+    while(t--){
+        int n,m,k;
+        cin>>n>>m>>k;
+        vector<long long> robot(n);
+        vector<long long> spike(m);
+        string s;
+        cin>>s;
 
-    long long n,k;
-    cin>>n>>k;
-    vector<long long> nums(n);
-    long long mini,maxi;
-    for(int i=0;i<n;i++){
-        cin>>nums[i];
+        for(int i=0;i<n;i++) cin>>robot[i];
+        for(int i=0;i<m;i++) cin>>spike[i];
+
+        vector<pair<int,int>> near(m);
+        for(int )
     }
-    sort(nums.begin(),nums.end());
-    
-
-    if((maxi-mini) <= k){
-        cout<<0<<"\n";
-    }else cout<<(maxi-mini)-k<<"\n";
-
-
-
+ 
+ 
 }
