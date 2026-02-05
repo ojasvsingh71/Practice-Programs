@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Even-Odd</title>
+  </head>
+  <body>
+    <div>
+      <input type="number" id="num" placeholder="Enter a number" />
+      <button id="check" onclick="check()">Check for Even-Odd</button>
+      <div id="res"></div>
+    </div>
+    <script>
+      const check = () => {
+        let num = parseInt(document.getElementById("num").value);
+        const evenCheck = (n) => n % 2 === 0;
+        document.getElementById("res").innerHTML =
+          `${num} is a ${evenCheck(num) ? "Even" : "Odd"} number`;
+      };
+    </script>
+  </body>
+</html>

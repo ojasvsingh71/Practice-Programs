@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Factorial</title>
+  </head>
+  <body>
+    <div>
+      <input id="num" placeholder="Enter a number" />
+      <button id="button" onclick="fac()">Factorial</button>
+      <div id="res"></div>
+    </div>
+    <script>
+      const fac = () => {
+        let n = parseInt(document.getElementById("num").value);
+        let fac = (n) => (n > 1 ? n * fac(--n) : 1);
+        document.getElementById("res").innerHTML=`Factorial of ${n} is ${fac(n)}`
+      };
+    </script>
+  </body>
+</html>

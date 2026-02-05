@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Two Numbers</title>
+</head>
+<body>
+    <div>
+        <input type="number" id="num1" placeholder="Number 1">
+        <input type="number" id="num2" placeholder="Number 2">
+        <button id="addButton" onclick="add()">Add</button>
+        <div id="result"></div>
+    </div>
+    <script>
+        const add=()=>{
+            let num1=parseFloat(document.getElementById("num1").value);
+            let num2=parseFloat(document.getElementById("num2").value);
+            document.getElementById("result").innerHTML=`The sum of ${num1} and ${num2} is ${num1+num2}`;
+        }
+    </script>
+</body>
+</html>
