@@ -17,8 +17,8 @@ df=pd.read_csv(csv_path)
 
 df=pd.get_dummies(df,drop_first=True)
 # print(df.columns)
-X=df.drop(["Exam_Score"],axis=1)
-y=df["Exam_Score"]
+X=df.drop(["Peer_Influence_Positive"],axis=1)
+y=df["Peer_Influence_Positive"]
 
 X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.2,random_state=42)
 

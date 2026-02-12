@@ -7,7 +7,17 @@
 </head>
 <body>
     <div>
-        
+        <input type="text" placeholder="Enter Name" id="name"> 
+        <input type="text" placeholder="Enter Password" id="password"> 
+        <button id="check" onclick="check()">Check</button>
+        <div id="res"></div>
     </div>
+    <script>
+        const check=()=>{
+            let name=document.getElementById("name").value;
+            let password=document.getElementById("password").value;
+            document.getElementById("res").innerHTML=`${name==='' || password==='' ? "Invalid credentials!!!" : "Valid credentials"}`
+        }
+    </script>
 </body>
 </html>
