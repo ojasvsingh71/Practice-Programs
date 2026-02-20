@@ -8,3 +8,4 @@ __pycache__
 temp/
 .cph/
 *.mp4
+*.pem
