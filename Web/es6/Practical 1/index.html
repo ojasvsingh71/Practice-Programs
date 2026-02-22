@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fees Receipt form</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      label {
+        font-weight: bold;
+        display: block;
+        margin-top: 10px;
+      }
+      input,
+      select {
+        width: 300px;
+        padding: 8px;
+        margin-top: 5px;
+      }
+      button {
+        margin-top: 20px;
+        padding: 10px 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>KIET Deemed to be University</h1>
+    <form id="form">
+      <label>Student Name : </label>
+      <input id="name" type="text" required />
+      <label>University Roll No. : </label>
+      <input id="roll" type="number" required />
+      <label>Branch : </label>
+      <select id="branch" required>
+        <option value="">Select Branch</option>
+        <option value="cse">CSE</option>
+        <option value="cseaiml">CSE AIML</option>
+        <option value="cseai">CSE AI</option>
+        <option value="cs">CS</option>
+        <option value="it">IT</option>
+        <option value="csit">CSIT</option>
+        <option value="ece">ECE</option>
+        <option value="elce">ELCE</option>
+        <option value="eee">EEE</option>
+        <option value="me">ME</option>
+      </select>
+      <label>Semester : </label>
+      <select id="sem">
+        <option value="">Select Semester</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+      </select>
+      <label>Fee Amount : </label>
+      <input type="number" id="amount" required />
+      <label>Date : </label>
+      <input type="date" id="date" required />
+      <br />
+      <button id="button" type="submit" disabled>Submit</button>
+    </form>
+    <script>
+      const form = document.getElementById("form");
+      const btn = document.getElementById("button");
+      const field = ["name", "roll", "branch", "sem", "amount", "date"];
+
+      const check = () => {
+        let Allvalid = true;
+        field.forEach((f) => {
+          valid = document.getElementById(f).value.trim() !== "";
+          if (!valid) Allvalid = false;
+        });
+        btn.disabled = !Allvalid;
+      };
+
+      field.forEach((f) => {
+        document.getElementById(f).addEventListener("input", check);
+      });
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        alert(`Form Submitted Successfuully!!!`);
+      });
+    </script>
+  </body>
+</html>
