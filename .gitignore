@@ -9,3 +9,5 @@ temp/
 .cph/
 *.mp4
 *.pem
+.venv/
+*.json

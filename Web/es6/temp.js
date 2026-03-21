@@ -52,7 +52,7 @@ sumNumbers(10, 20) → 30
 
 function sumNumbers(...nums) {
   // STUDENT CODE STARTS HERE
-  return nums.reduce((total, num) => total + num, 0);
+  return nums.reduce((total, num) => total + num, 0); g
 
   // STUDENT CODE ENDS HERE
 }
