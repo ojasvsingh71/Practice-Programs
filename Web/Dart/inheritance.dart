@@ -22,6 +22,6 @@ class child extends parent{
 
 void main(){
   child chonchu=child();
-  khushi.feature();
-  khushi.run();
+  chonchu.feature();
+  chonchu.run();
 }
