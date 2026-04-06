@@ -11,3 +11,4 @@ temp/
 *.pem
 .venv/
 *.json
+*.docx
