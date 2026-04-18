@@ -12,3 +12,4 @@ temp/
 .venv/
 *.json
 *.docx
+node_modules
