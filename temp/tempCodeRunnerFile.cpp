@@ -1,3 +1,1 @@
-
-        //     cout<<x/power<<"\n";
-        // }
+f(found) return;

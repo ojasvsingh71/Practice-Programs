@@ -1,0 +1,9 @@
+Order_ID,Order_Date,Category,Sub_Category,Region,Sales,Profit,Quantity
+O101,2023-01-05,Technology,Phones,North,45000,5000,5
+O102,2023-01-12,Furniture,Chairs,South,22000,3000,3
+O103,2023-02-03,Office Supplies,Paper,East,8000,1200,10
+O104,2023-02-18,Technology,Laptops,West,65000,9000,4
+O105,2023-03-06,Furniture,Tables,North,30000,-2000,2
+O106,2023-03-15,Office Supplies,Binders,South,12000,1500,6
+O107,2023-04-01,Technology,Accessories,East,18000,2500,7
+O108,2023-04-10,Furniture,Chairs,West,27000,3200,3
