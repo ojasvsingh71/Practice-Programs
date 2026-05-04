@@ -18,54 +18,25 @@ int main()
             cin >> nums[i];
         int p;
         cin >> p;
+        p--;
 
-        int bu=0;
-        for(int i=0;i<n;i++){
-            if(nums[i]!=nums[p-1]) {
-                bu=1;
-                break;
-            }
-        }
-        if(!bu){
-            cout<<0<<"\n";
-            continue;
-        }
+        int tar=nums[p];
 
-        // all one
-        int ls = 0, rs = n - 1;
-        if (nums[p-1] == 1)
-        {
-            
-            int op1 = 0;
-            while (ls < rs)
-            {
-                while (ls != p-1 && ((nums[ls] == 1 && op1 % 2 == 0) || (nums[ls] == 0 && op1 % 2 == 1)))
-                    ls++;
-                while (rs != p-1 && ((nums[rs] == 1 && op1 % 2 == 0) || (nums[rs] == 0 && op1 % 2 == 1)))
-                    rs--;
-                if (ls == rs)
-                    break;
-                op1++;
-            }
-            cout<<op1+1<<"\n";
+        int cost=0;
+        int ls=0,rs=n-1;
+        while(ls<p && nums[ls]==tar) ls++;
+        while(rs>p && nums[rs]==tar) rs--;
+        // cout<<ls<<" -- "<<rs<<"\n";
+        while(ls!=rs){
+            cost++;
+            // cout<<ls<<" -- "<<rs<<"\n";
+            nums[p]=1-nums[p];
+            while(ls<p && nums[ls]==nums[p]) ls++;
+            while(rs>p && nums[rs]==nums[p]) rs--;
         }
-        else
-        {
-            // all zero
-            int op2 = 0;
-            ls = 0, rs = n - 1;
-            while (ls < rs)
-            {
-                while (ls != p-1 && ((nums[ls] == 0 && op2 % 2 == 0) || (nums[ls] == 1 && op2 % 2 == 1)))
-                    ls++;
-                while (rs != p-1 && ((nums[rs] == 0 && op2 % 2 == 0) || (nums[rs] == 1 && op2 % 2 == 1)))
-                    rs--;
-                if (ls == rs)
-                    break;
-                op2++;
-            }
-            cout<<op2+1<<"\n";
-        }
+        if(cost%2==1) cost++;
+        cout<<cost<<"\n";
         
+        // cout<<"\n";
     }
 }
