@@ -1,6 +1,39 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+void out(int ls,int rs,vector<int>& m,int n,vector<int>& nums){
+    while(ls>=0 && rs<2*n){
+        if(nums[ls]!=nums[rs]){
+            break;
+        }
+        m[nums[ls]]=1;
+        ls--,rs++;
+    }
+}
+
+void in(int ls,int rs,vector<int>& m,int n,vector<int>& nums,int& alert){
+    while(ls<=rs){
+        if(nums[ls]!=nums[rs]){
+            alert=1;
+            break;
+        }
+        m[nums[ls]]=1;
+        ls++,rs--;
+    }
+}
+
+void clean(vector<int>& m){
+    for(int i=0;i<m.size();i++) m[i]=0;
+}
+
+int mex(vector<int>& m){
+    for(int i=0;i<m.size();i++){
+        if(m[i]==0){
+            return i;
+        }
+    }return -1;
+}
+
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
@@ -14,74 +47,36 @@ int main() {
         for(int i=0;i<2*n;i++){
             cin>>nums[i];
         }
+        
         int l=0,r=2*n-1;
         while(l<2*n && nums[l]!=0) l++;
         while(r>=0 && nums[r]!=0) r--;
-        cout<<"L ="<<l<<"R ="<<r<<"\n";
-        int mex=1;
-        if(l==0 || r==2*n-1){
-            int bu=0;
-            vector<int> track(n,0);
-            track[0]=1;
-            while(l<=r){
-                if(nums[l]!=nums[r]){
-                    bu=1;
-                    cout<<l<<"++++\n";
-                    
-                    break;
-                }track[nums[l]]=1;
-                l++,r--;
-            }
-            if(bu) mex=1;
-            else{
-                for(int i=0;i<n;i++){
-                    if(track[i]==0){
-                        mex=i;
-                        break;
-                    }
-                }
-            }
-        }else{
-            vector<int> track(n,0);
-            track[0]=1;
-            int hu=0;
-            int ll=l,rr=r;
-            while(l>=0 && r<2*n){
-                if(nums[l]!=nums[r]){
-                    hu=1;
-                    cout<<l<<"++++\n";
-                    break;
-                }track[nums[l]]=1;
-                l--,r++;
-            }
 
-            if(hu){
-                for(int i=1;i<n;i++){
-                    track[i]=0;
-                }
-            }
-            l=ll,r=rr;
-
-            int bu=0;
-            while(l<=r){
-                if(nums[l]!=nums[r]){
-                    bu=1;
-                    cout<<l<<"++++\n";
-                    break;
-                }track[nums[l]]=1;
-                l++,r--;
-            }
-            if(bu) mex=1;
-            else{
-                for(int i=0;i<n;i++){
-                    if(track[i]==0){
-                        mex=max(mex,i);
-                        break;
-                    }
-                }
-            }
+        int alert=0;
+        vector<int> m(n+1,0);
+        in(l,r,m,n,nums,alert);
+        out(l,r,m,n,nums);
+        int mex1=mex(m);
+        if(alert) {
+            alert=0;
+            mex1=1;
         }
-        cout<<mex<<"\n";
+
+        clean(m);
+        // for(int i:m) cout<<i<<" ";
+        // cout<<"\n";
+
+        out(l,l,m,n,nums);
+        int mex2=mex(m);
+        clean(m);
+        
+        // for(int i:m) cout<<i<<" ";
+        // cout<<"\n";
+
+        out(r,r,m,n,nums);
+        int mex3=mex(m);
+        
+        cout<<max(mex1,max(mex2,mex3))<<"\n";
 
     }
     
