@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Submitted Data</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #eef2ff;
+        margin: 0;
+        padding: 40px;
+      }
+      .card {
+        max-width: 560px;
+        margin: 0 auto;
+        background: #fff;
+        border-radius: 14px;
+        padding: 28px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      }
+      ul {
+        padding-left: 20px;
+      }
+      a {
+        display: inline-block;
+        margin-top: 20px;
+        color: #2563eb;
+        text-decoration: none;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Submitted Data</h1>
+      <ul>
+        <li><strong>Name:</strong> {{ data.name }}</li>
+        <li><strong>Email:</strong> {{ data.email }}</li>
+        <li><strong>Course:</strong> {{ data.course }}</li>
+      </ul>
+      <a href="{% url 'home' %}">Submit another response</a>
+    </div>
+  </body>
+</html>
