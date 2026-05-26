@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Online Shopping Portal</title>
+
+    <style>
+      body {
+        font-family: Arial;
+        background-color: #f2f2f2;
+        padding: 30px;
+      }
+
+      .container {
+        width: 500px;
+        background: white;
+        margin: auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px gray;
+      }
+
+      input {
+        width: 95%;
+        padding: 10px;
+        margin: 8px 0;
+      }
+
+      button {
+        background-color: purple;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      .invoice-box {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 8px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Shopping Cart Bill Generator</h2>
+
+      {% if success %}
+
+      <div class="invoice-box">
+        <h3>Invoice</h3>
+
+        <p><b>Product Name:</b> {{ product_name }}</p>
+
+        <hr />
+
+        <p><b>Quantity:</b> {{ quantity }}</p>
+        <p><b>Price per Item:</b> ₹{{ price_per_item }}</p>
+
+        <hr />
+
+        <p><b>Subtotal:</b> ₹{{ subtotal }}</p>
+        <p><b>GST (18%):</b> ₹{{ gst_amount }}</p>
+
+        <hr />
+
+        <h3>Total Amount: ₹{{ total_amount }}</h3>
+
+        <br />
+
+        <a href="/">Generate Another Invoice</a>
+      </div>
+
+      {% else %}
+
+      <form action="/invoice" method="POST">
+        <label>Product Name</label>
+        <input type="text" name="product_name" required />
+
+        <label>Quantity</label>
+        <input type="text" name="quantity" required />
+
+        <label>Price per Item</label>
+        <input type="text" name="price_per_item" required />
+
+        <br /><br />
+
+        <button type="submit">Generate Invoice</button>
+      </form>
+
+      {% endif %}
+    </div>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Employee Payroll System</title>
+
+    <style>
+      body {
+        font-family: Arial;
+        background-color: #f2f2f2;
+        padding: 30px;
+      }
+
+      .container {
+        width: 500px;
+        margin: auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px gray;
+      }
+
+      input {
+        width: 95%;
+        padding: 10px;
+        margin: 8px 0;
+      }
+
+      button {
+        background-color: blue;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      .salary-slip {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 8px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Employee Payroll System</h2>
+
+      {% if success %}
+
+      <div class="salary-slip">
+        <h3>Employee Salary Slip</h3>
+
+        <p><b>Employee ID:</b> {{ emp_id }}</p>
+        <p><b>Employee Name:</b> {{ emp_name }}</p>
+
+        <hr />
+
+        <p><b>Basic Salary:</b> ₹{{ basic_salary }}</p>
+        <p><b>HRA (20%):</b> ₹{{ hra }}</p>
+        <p><b>DA (10%):</b> ₹{{ da }}</p>
+        <p><b>Bonus:</b> ₹{{ bonus }}</p>
+
+        <hr />
+
+        <h3>Net Salary: ₹{{ net_salary }}</h3>
+
+        <br />
+
+        <a href="/">Generate Another Salary Slip</a>
+      </div>
+
+      {% else %}
+
+      <form action="/salary" method="POST">
+        <label>Employee ID</label>
+        <input type="text" name="emp_id" required />
+
+        <label>Employee Name</label>
+        <input type="text" name="emp_name" required />
+
+        <label>Basic Salary</label>
+        <input type="text" name="basic_salary" required />
+
+        <label>Bonus Percentage</label>
+        <input type="text" name="bonus_percent" required />
+
+        <br /><br />
+
+        <button type="submit">Generate Salary Slip</button>
+      </form>
+
+      {% endif %}
+    </div>
+  </body>
+</html>

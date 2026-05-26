@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Age Comparison Portal</title>
+
+    <style>
+      body {
+        font-family: Arial;
+        background-color: #f2f2f2;
+        padding: 30px;
+      }
+
+      .container {
+        width: 500px;
+        background: white;
+        margin: auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px gray;
+      }
+
+      input {
+        width: 95%;
+        padding: 10px;
+        margin: 8px 0;
+      }
+
+      button {
+        background-color: darkblue;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      .result-box {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 8px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Age Difference Calculator</h2>
+
+      {% if success %}
+
+      <div class="result-box">
+        <h3>Comparison Result</h3>
+
+        <p><b>Person 1 DOB:</b> {{ dob1 }}</p>
+        <p><b>Person 2 DOB:</b> {{ dob2 }}</p>
+
+        <hr />
+
+        <h3>Age Difference</h3>
+
+        <p><b>Years:</b> {{ years }}</p>
+        <p><b>Months:</b> {{ months }}</p>
+        <p><b>Days:</b> {{ days }}</p>
+
+        <br />
+
+        <a href="/">Compare Again</a>
+      </div>
+
+      {% else %}
+
+      <form action="/compare" method="POST">
+        <label>Person 1 Date of Birth</label>
+        <input type="date" name="dob1" required />
+
+        <label>Person 2 Date of Birth</label>
+        <input type="date" name="dob2" required />
+
+        <br /><br />
+
+        <button type="submit">Calculate Difference</button>
+      </form>
+
+      {% endif %}
+    </div>
+  </body>
+</html>

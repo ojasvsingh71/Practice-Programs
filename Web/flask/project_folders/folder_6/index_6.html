@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Interest Calculator Portal</title>
+
+    <style>
+      body {
+        font-family: Arial;
+        background-color: #f2f2f2;
+        padding: 30px;
+      }
+
+      .container {
+        width: 500px;
+        background: white;
+        margin: auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px gray;
+      }
+
+      input {
+        width: 95%;
+        padding: 10px;
+        margin: 8px 0;
+      }
+
+      button {
+        background-color: darkblue;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      .result-box {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 8px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Simple Interest Calculator</h2>
+
+      {% if success %}
+
+      <div class="result-box">
+        <h3>Interest Calculation Result</h3>
+
+        <p><b>Customer Name:</b> {{ customer_name }}</p>
+
+        <hr />
+
+        <p><b>Principal Amount:</b> ₹{{ principal }}</p>
+        <p><b>Rate of Interest:</b> {{ rate }}%</p>
+        <p><b>Time Period:</b> {{ time }} Years</p>
+
+        <hr />
+
+        <p><b>Simple Interest:</b> ₹{{ simple_interest }}</p>
+
+        <h3>Final Amount: ₹{{ final_amount }}</h3>
+
+        <br />
+
+        <a href="/">Calculate Again</a>
+      </div>
+
+      {% else %}
+
+      <form action="/calculate" method="POST">
+        <label>Customer Name</label>
+        <input type="text" name="customer_name" required />
+
+        <label>Principal Amount</label>
+        <input type="text" name="principal" required />
+
+        <label>Rate of Interest (%)</label>
+        <input type="text" name="rate" required />
+
+        <label>Time Period (Years)</label>
+        <input type="text" name="time" required />
+
+        <br /><br />
+
+        <button type="submit">Calculate Interest</button>
+      </form>
+
+      {% endif %}
+    </div>
+  </body>
+</html>

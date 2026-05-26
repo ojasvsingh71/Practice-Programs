@@ -4,6 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/rendering.dart';
 
+// Per-file Color compatibility shim (replaces deprecated `withOpacity` usage)
+extension ColorWithValues on Color {
+  Color withValues(double opacity) {
+    final int r = (value >> 16) & 0xFF;
+    final int g = (value >> 8) & 0xFF;
+    final int b = value & 0xFF;
+    return Color.fromRGBO(r, g, b, opacity.clamp(0.0, 1.0));
+  }
+}
+
 // ============================================================================
 // 1. CONSTANTS, ENUMS & CONFIGURATION
 // ============================================================================

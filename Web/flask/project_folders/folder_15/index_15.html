@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Bank Registration System</title>
+
+    <style>
+      body {
+        font-family: Arial;
+        background-color: #f2f2f2;
+        padding: 30px;
+      }
+
+      .container {
+        width: 500px;
+        background: white;
+        margin: auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px gray;
+      }
+
+      input {
+        width: 95%;
+        padding: 10px;
+        margin: 8px 0;
+      }
+
+      button {
+        background-color: darkblue;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      .result-box {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 8px;
+      }
+
+      .approved {
+        color: green;
+        font-weight: bold;
+      }
+
+      .rejected {
+        color: red;
+        font-weight: bold;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Bank Account Eligibility Checker</h2>
+
+      {% if success %}
+
+      <div class="result-box">
+        <h3>Eligibility Result</h3>
+
+        <p><b>Applicant Name:</b> {{ applicant_name }}</p>
+        <p><b>Age:</b> {{ age }}</p>
+        <p><b>Monthly Income:</b> ₹{{ monthly_income }}</p>
+
+        <hr />
+
+        {% if status == "Approved for Bank Account" %}
+        <p class="approved">{{ status }}</p>
+        {% else %}
+        <p class="rejected">{{ status }}</p>
+        {% endif %}
+
+        <br />
+
+        <a href="/">Check Another Applicant</a>
+      </div>
+
+      {% else %}
+
+      <form action="/check" method="POST">
+        <label>Applicant Name</label>
+        <input type="text" name="applicant_name" required />
+
+        <label>Age</label>
+        <input type="text" name="age" required />
+
+        <label>Monthly Income</label>
+        <input type="text" name="monthly_income" required />
+
+        <br /><br />
+
+        <button type="submit">Check Eligibility</button>
+      </form>
+
+      {% endif %}
+    </div>
+  </body>
+</html>

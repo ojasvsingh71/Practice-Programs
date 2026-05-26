@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Travel Fuel Calculator</title>
+
+    <style>
+      body {
+        font-family: Arial;
+        background-color: #f2f2f2;
+        padding: 30px;
+      }
+
+      .container {
+        width: 500px;
+        background: white;
+        margin: auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px gray;
+      }
+
+      input {
+        width: 95%;
+        padding: 10px;
+        margin: 8px 0;
+      }
+
+      button {
+        background-color: darkred;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      .result-box {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 8px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Fuel Cost Estimator</h2>
+
+      {% if success %}
+
+      <div class="result-box">
+        <h3>Travel Cost Report</h3>
+
+        <p><b>Distance to Travel:</b> {{ distance }} km</p>
+        <p><b>Vehicle Mileage:</b> {{ mileage }} km/litre</p>
+        <p><b>Fuel Price:</b> ₹{{ fuel_price }} per litre</p>
+
+        <hr />
+
+        <p><b>Fuel Required:</b> {{ fuel_required }} litres</p>
+
+        <h3>Total Travel Cost: ₹{{ total_cost }}</h3>
+
+        <br />
+
+        <a href="/">Calculate Again</a>
+      </div>
+
+      {% else %}
+
+      <form action="/fuel" method="POST">
+        <label>Distance to Travel (km)</label>
+        <input type="text" name="distance" required />
+
+        <label>Mileage of Vehicle (km/litre)</label>
+        <input type="text" name="mileage" required />
+
+        <label>Fuel Price (₹ per litre)</label>
+        <input type="text" name="fuel_price" required />
+
+        <br /><br />
+
+        <button type="submit">Calculate Fuel Cost</button>
+      </form>
+
+      {% endif %}
+    </div>
+  </body>
+</html>

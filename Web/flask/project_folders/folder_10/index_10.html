@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Currency Exchange System</title>
+
+    <style>
+      body {
+        font-family: Arial;
+        background-color: #f2f2f2;
+        padding: 30px;
+      }
+
+      .container {
+        width: 500px;
+        background: white;
+        margin: auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px gray;
+      }
+
+      input,
+      select {
+        width: 95%;
+        padding: 10px;
+        margin: 8px 0;
+      }
+
+      button {
+        background-color: darkblue;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      .result-box {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 8px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Currency Converter</h2>
+
+      {% if success %}
+
+      <div class="result-box">
+        <h3>Conversion Result</h3>
+
+        <p><b>User Name:</b> {{ user_name }}</p>
+
+        <hr />
+
+        <p><b>Amount in INR:</b> ₹{{ amount_inr }}</p>
+        <p><b>Converted Currency:</b> {{ currency_type }}</p>
+
+        <hr />
+
+        <h3>Converted Amount: {{ converted_amount }} {{ currency_type }}</h3>
+
+        <br />
+
+        <a href="/">Convert Another Amount</a>
+      </div>
+
+      {% else %}
+
+      <form action="/convert" method="POST">
+        <label>User Name</label>
+        <input type="text" name="user_name" required />
+
+        <label>Amount in INR</label>
+        <input type="text" name="amount_inr" required />
+
+        <label>Currency Type</label>
+        <select name="currency_type" required>
+          <option value="">Select Currency</option>
+          <option value="USD">USD</option>
+          <option value="EUR">EUR</option>
+          <option value="GBP">GBP</option>
+          <option value="JPY">JPY</option>
+        </select>
+
+        <br /><br />
+
+        <button type="submit">Convert Currency</button>
+      </form>
+
+      {% endif %}
+    </div>
+  </body>
+</html>

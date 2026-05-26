@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Loan EMI Portal</title>
+
+    <style>
+      body {
+        font-family: Arial;
+        background-color: #f2f2f2;
+        padding: 30px;
+      }
+
+      .container {
+        width: 550px;
+        background: white;
+        margin: auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px gray;
+      }
+
+      input {
+        width: 95%;
+        padding: 10px;
+        margin: 8px 0;
+      }
+
+      button {
+        background-color: darkred;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      .result-box {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 8px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Loan EMI Calculator</h2>
+
+      {% if success %}
+
+      <div class="result-box">
+        <h3>EMI Calculation Result</h3>
+
+        <p><b>Applicant Name:</b> {{ applicant_name }}</p>
+
+        <hr />
+
+        <p><b>Loan Amount:</b> ₹{{ loan_amount }}</p>
+        <p><b>Interest Rate:</b> {{ interest_rate }}%</p>
+        <p><b>Loan Duration:</b> {{ loan_duration }} Years</p>
+
+        <hr />
+
+        <p><b>Monthly EMI:</b> ₹{{ emi_amount }}</p>
+        <p><b>Total Interest:</b> ₹{{ total_interest }}</p>
+
+        <h3>Total Repayment Amount: ₹{{ total_payment }}</h3>
+
+        <br />
+
+        <a href="/">Calculate Another EMI</a>
+      </div>
+
+      {% else %}
+
+      <form action="/emi" method="POST">
+        <label>Applicant Name</label>
+        <input type="text" name="applicant_name" required />
+
+        <label>Loan Amount</label>
+        <input type="text" name="loan_amount" required />
+
+        <label>Interest Rate (%)</label>
+        <input type="text" name="interest_rate" required />
+
+        <label>Loan Duration (Years)</label>
+        <input type="text" name="loan_duration" required />
+
+        <br /><br />
+
+        <button type="submit">Calculate EMI</button>
+      </form>
+
+      {% endif %}
+    </div>
+  </body>
+</html>

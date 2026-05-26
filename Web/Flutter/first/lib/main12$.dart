@@ -2,6 +2,16 @@ import 'dart:async';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+// Per-file Color compatibility shim (replaces deprecated withOpacity usage)
+extension ColorWithValues on Color {
+  Color withValues(double opacity) {
+    final int r = (value >> 16) & 0xFF;
+    final int g = (value >> 8) & 0xFF;
+    final int b = value & 0xFF;
+    return Color.fromRGBO(r, g, b, opacity.clamp(0.0, 1.0));
+  }
+}
+
 
 // ============================================================================
 // 1. CONSTANTS, ENUMS & THEME
@@ -912,7 +922,7 @@ class _TransactionTile extends StatelessWidget {
                 color: category.color.withOpacity(0.15),
                 shape: BoxShape.circle,
               ),
-              child: Icon(category.icon, color: category.color),
+                child: Icon(category.icon, color: category.color),
             ),
             const SizedBox(width: 16),
             Expanded(
@@ -1129,8 +1139,8 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                           margin: const EdgeInsets.only(right: 16),
                           decoration: BoxDecoration(
                             color: isSelected
-                                ? c.color.withOpacity(0.2)
-                                : AppColors.background,
+                              ? c.color.withOpacity(0.2)
+                              : AppColors.background,
                             borderRadius: BorderRadius.circular(16),
                             border: Border.all(
                               color: isSelected ? c.color : Colors.transparent,

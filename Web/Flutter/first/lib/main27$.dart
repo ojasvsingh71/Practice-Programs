@@ -3,6 +3,16 @@ import 'dart:math' as math;
 // removed unused dart:ui import
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+// Per-file Color compatibility shim (replaces deprecated withOpacity usage)
+extension ColorWithValues on Color {
+  Color withValues(double opacity) {
+    final int r = (value >> 16) & 0xFF;
+    final int g = (value >> 8) & 0xFF;
+    final int b = value & 0xFF;
+    return Color.fromRGBO(r, g, b, opacity.clamp(0.0, 1.0));
+  }
+}
+
 
 // ============================================================================
 // 1. CONSTANTS, ENUMS & THEME
@@ -748,7 +758,7 @@ class _PollCard extends StatelessWidget {
           border: Border.all(color: AppColors.surfaceHighlight, width: 1),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.2),
+                color: Colors.black.withOpacity(0.2),
               blurRadius: 15,
               offset: const Offset(0, 8),
             ),
@@ -790,7 +800,7 @@ class _PollCard extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     color: isClosed
-                        ? AppColors.error.withOpacity(0.1)
+                          ? AppColors.error.withOpacity(0.1)
                         : AppColors.success.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),

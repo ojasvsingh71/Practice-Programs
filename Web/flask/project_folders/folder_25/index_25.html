@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Weather Converter Portal</title>
+
+    <style>
+      body {
+        font-family: Arial;
+        background-color: #f2f2f2;
+        padding: 30px;
+      }
+
+      .container {
+        width: 550px;
+        background: white;
+        margin: auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px gray;
+      }
+
+      input {
+        width: 95%;
+        padding: 10px;
+        margin: 8px 0;
+      }
+
+      button {
+        background-color: darkcyan;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      .result-box {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 8px;
+      }
+
+      .weather {
+        font-size: 20px;
+        font-weight: bold;
+        color: darkblue;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Weather Report & Temperature Converter</h2>
+
+      {% if success %}
+
+      <div class="result-box">
+        <h3>Weather Report</h3>
+
+        <p><b>City Name:</b> {{ city_name }}</p>
+
+        <hr />
+
+        <p><b>Temperature in Celsius:</b> {{ celsius }} °C</p>
+
+        <p><b>Temperature in Fahrenheit:</b> {{ fahrenheit }} °F</p>
+
+        <hr />
+
+        <p class="weather">{{ weather_report }}</p>
+
+        <br />
+
+        <a href="/">Check Another City</a>
+      </div>
+
+      {% else %}
+
+      <form action="/weather" method="POST">
+        <label>City Name</label>
+        <input type="text" name="city_name" required />
+
+        <label>Temperature in Celsius</label>
+        <input type="text" name="celsius" required />
+
+        <br /><br />
+
+        <button type="submit">Generate Weather Report</button>
+      </form>
+
+      {% endif %}
+    </div>
+  </body>
+</html>

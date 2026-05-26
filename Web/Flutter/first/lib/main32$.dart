@@ -3,6 +3,16 @@ import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+// Per-file Color compatibility shim (replaces deprecated withOpacity usage)
+extension ColorWithValues on Color {
+  Color withValues(double opacity) {
+    final int r = (value >> 16) & 0xFF;
+    final int g = (value >> 8) & 0xFF;
+    final int b = value & 0xFF;
+    return Color.fromRGBO(r, g, b, opacity.clamp(0.0, 1.0));
+  }
+}
+
 
 /// ============================================================================
 /// 1. SYSTEM INITIALIZATION & CORE RUNTIME
@@ -1304,7 +1314,7 @@ class StockDetailScreen extends StatelessWidget {
                           child: Container(
                             padding: const EdgeInsets.symmetric(vertical: 12),
                             decoration: BoxDecoration(
-                              color: crossAbove
+                                color: crossAbove
                                   ? EquinoxTheme.bullGreen.withOpacity(0.2)
                                   : Colors.transparent,
                               border: Border.all(
@@ -1334,7 +1344,7 @@ class StockDetailScreen extends StatelessWidget {
                           child: Container(
                             padding: const EdgeInsets.symmetric(vertical: 12),
                             decoration: BoxDecoration(
-                              color: !crossAbove
+                                color: !crossAbove
                                   ? EquinoxTheme.bearRed.withOpacity(0.2)
                                   : Colors.transparent,
                               border: Border.all(
@@ -1489,7 +1499,7 @@ class AlertsManagerScreen extends StatelessWidget {
                           ),
                           decoration: BoxDecoration(
                             color: alert.isActive
-                                ? EquinoxTheme.accent.withOpacity(0.2)
+                              ? EquinoxTheme.accent.withOpacity(0.2)
                                 : EquinoxTheme.surfaceLight,
                             borderRadius: BorderRadius.circular(4),
                           ),

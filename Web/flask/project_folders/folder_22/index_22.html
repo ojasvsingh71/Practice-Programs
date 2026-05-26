@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Restaurant Billing Portal</title>
+
+    <style>
+      body {
+        font-family: Arial;
+        background-color: #f2f2f2;
+        padding: 30px;
+      }
+
+      .container {
+        width: 550px;
+        background: white;
+        margin: auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px gray;
+      }
+
+      input {
+        width: 95%;
+        padding: 10px;
+        margin: 8px 0;
+      }
+
+      button {
+        background-color: darkorange;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      .bill-box {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 8px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Food Order Billing System</h2>
+
+      {% if success %}
+
+      <div class="bill-box">
+        <h3>Restaurant Bill</h3>
+
+        <p><b>Customer Name:</b> {{ customer_name }}</p>
+        <p><b>Food Item:</b> {{ food_item }}</p>
+
+        <hr />
+
+        <p><b>Quantity:</b> {{ quantity }}</p>
+        <p><b>Price per Item:</b> ₹{{ price }}</p>
+
+        <hr />
+
+        <p><b>Subtotal:</b> ₹{{ subtotal }}</p>
+        <p><b>Tax (5%):</b> ₹{{ tax_amount }}</p>
+
+        <h3>Total Bill: ₹{{ total_bill }}</h3>
+
+        <br />
+
+        <a href="/">Generate Another Bill</a>
+      </div>
+
+      {% else %}
+
+      <form action="/bill" method="POST">
+        <label>Customer Name</label>
+        <input type="text" name="customer_name" required />
+
+        <label>Food Item</label>
+        <input type="text" name="food_item" required />
+
+        <label>Quantity</label>
+        <input type="text" name="quantity" required />
+
+        <label>Price</label>
+        <input type="text" name="price" required />
+
+        <br /><br />
+
+        <button type="submit">Generate Bill</button>
+      </form>
+
+      {% endif %}
+    </div>
+  </body>
+</html>

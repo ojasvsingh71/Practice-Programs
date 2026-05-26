@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Office Attendance Portal</title>
+
+    <style>
+      body {
+        font-family: Arial;
+        background-color: #f2f2f2;
+        padding: 30px;
+      }
+
+      .container {
+        width: 550px;
+        background: white;
+        margin: auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px gray;
+      }
+
+      input {
+        width: 95%;
+        padding: 10px;
+        margin: 8px 0;
+      }
+
+      button {
+        background-color: darkblue;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      .result-box {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 8px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Employee Attendance & Salary System</h2>
+
+      {% if success %}
+
+      <div class="result-box">
+        <h3>Attendance Summary</h3>
+
+        <p><b>Employee Name:</b> {{ employee_name }}</p>
+
+        <hr />
+
+        <p><b>Total Working Days:</b> {{ working_days }}</p>
+        <p><b>Days Present:</b> {{ days_present }}</p>
+        <p><b>Attendance Percentage:</b> {{ attendance_percentage }}%</p>
+
+        <hr />
+
+        <p><b>Salary Per Day:</b> ₹{{ salary_per_day }}</p>
+
+        <h3>Monthly Salary: ₹{{ monthly_salary }}</h3>
+
+        <br />
+
+        <a href="/">Calculate Again</a>
+      </div>
+
+      {% else %}
+
+      <form action="/salary" method="POST">
+        <label>Employee Name</label>
+        <input type="text" name="employee_name" required />
+
+        <label>Working Days</label>
+        <input type="text" name="working_days" required />
+
+        <label>Days Present</label>
+        <input type="text" name="days_present" required />
+
+        <label>Salary Per Day</label>
+        <input type="text" name="salary_per_day" required />
+
+        <br /><br />
+
+        <button type="submit">Generate Summary</button>
+      </form>
+
+      {% endif %}
+    </div>
+  </body>
+</html>

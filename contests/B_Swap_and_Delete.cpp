@@ -10,16 +10,19 @@ int main(){
     while(t--){
         string s;
         cin>>s;
+        int n=s.size();
 
-        int z=0,o=0;
+        int zero=0,one=0;
         for(char c:s){
-            if(c=='0') z++;
-            else o++;
+            if(c=='0') zero++;
+            else one++;
         }
-        if(o==z){
-            cout<<0<<"\n";
-        }else{
-            
+        int i=0;
+        while(i<n && ((s[i]=='0' && one>0) || (s[i]=='1' && zero>0))){
+            if(s[i]=='0') one--;
+            else zero--;
+            i++;
         }
+        cout<<n-i<<"\n";
     }
 }

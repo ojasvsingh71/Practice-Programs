@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+  <head>
+    <title>GST Billing Portal</title>
+
+    <style>
+      body {
+        font-family: Arial;
+        background-color: #f2f2f2;
+        padding: 30px;
+      }
+
+      .container {
+        width: 500px;
+        background: white;
+        margin: auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px gray;
+      }
+
+      input {
+        width: 95%;
+        padding: 10px;
+        margin: 8px 0;
+      }
+
+      button {
+        background-color: darkgreen;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      .result-box {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 8px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>GST Calculator</h2>
+
+      {% if success %}
+
+      <div class="result-box">
+        <h3>GST Bill Summary</h3>
+
+        <p><b>Product Name:</b> {{ product_name }}</p>
+
+        <hr />
+
+        <p><b>Product Price:</b> ₹{{ product_price }}</p>
+        <p><b>GST Percentage:</b> {{ gst_percentage }}%</p>
+
+        <hr />
+
+        <p><b>GST Amount:</b> ₹{{ gst_amount }}</p>
+
+        <h3>Final Price: ₹{{ final_price }}</h3>
+
+        <br />
+
+        <a href="/">Calculate Again</a>
+      </div>
+
+      {% else %}
+
+      <form action="/gst" method="POST">
+        <label>Product Name</label>
+        <input type="text" name="product_name" required />
+
+        <label>Product Price</label>
+        <input type="text" name="product_price" required />
+
+        <label>GST Percentage</label>
+        <input type="text" name="gst_percentage" required />
+
+        <br /><br />
+
+        <button type="submit">Calculate GST</button>
+      </form>
+
+      {% endif %}
+    </div>
+  </body>
+</html>

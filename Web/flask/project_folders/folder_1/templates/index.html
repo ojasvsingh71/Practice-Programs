@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Result Portal</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f2f2f2;
+            padding: 30px;
+        }
+
+        .container {
+            width: 500px;
+            background: white;
+            padding: 20px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+        }
+
+        input {
+            width: 95%;
+            padding: 10px;
+            margin: 8px 0;
+        }
+
+        button {
+            background-color: green;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Student Login & Percentage Calculator</h2>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    {% if success %}
+
+        <h3 class="success">Login Successful!</h3>
+
+        <p><b>Email:</b> {{ email }}</p>
+
+        <h4>Marks</h4>
+        <ul>
+            <li>Subject 1: {{ marks[0] }}</li>
+            <li>Subject 2: {{ marks[1] }}</li>
+            <li>Subject 3: {{ marks[2] }}</li>
+            <li>Subject 4: {{ marks[3] }}</li>
+            <li>Subject 5: {{ marks[4] }}</li>
+        </ul>
+
+        <p><b>Total Marks:</b> {{ total }}</p>
+        <p><b>Percentage:</b> {{ percentage }}%</p>
+        <p><b>Grade:</b> {{ grade }}</p>
+
+        <br>
+        <a href="/">Go Back</a>
+
+    {% else %}
+
+    <form action="/result" method="POST">
+
+        <label>Student Email ID</label>
+        <input type="email" name="email" required>
+
+        <label>Password</label>
+        <input type="password" name="password" required>
+
+        <label>Marks in Subject 1</label>
+        <input type="number" name="mark1" required>
+
+        <label>Marks in Subject 2</label>
+        <input type="number" name="mark2" required>
+
+        <label>Marks in Subject 3</label>
+        <input type="number" name="mark3" required>
+
+        <label>Marks in Subject 4</label>
+        <input type="number" name="mark4" required>
+
+        <label>Marks in Subject 5</label>
+        <input type="number" name="mark5" required>
+
+        <button type="submit">Submit</button>
+
+    </form>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

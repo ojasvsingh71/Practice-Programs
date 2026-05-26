@@ -8,6 +8,16 @@ import 'dart:async';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+// Per-file Color compatibility shim (replaces deprecated withOpacity usage)
+extension ColorWithValues on Color {
+  Color withValues(double opacity) {
+    final int r = (value >> 16) & 0xFF;
+    final int g = (value >> 8) & 0xFF;
+    final int b = value & 0xFF;
+    return Color.fromRGBO(r, g, b, opacity.clamp(0.0, 1.0));
+  }
+}
+
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -883,7 +893,7 @@ class BillCard extends StatelessWidget {
               children: [
                 Container(
                   padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
+                    decoration: BoxDecoration(
                     color: statusColor.withOpacity(0.1),
                     shape: BoxShape.circle,
                   ),

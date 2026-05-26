@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recharge System</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f2f2f2;
+            padding: 30px;
+        }
+
+        .container {
+            width: 500px;
+            background: white;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+        }
+
+        input {
+            width: 95%;
+            padding: 10px;
+            margin: 8px 0;
+        }
+
+        button {
+            background-color: darkgreen;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .result-box {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        h2, h3 {
+            text-align: center;
+        }
+
+        .success {
+            color: green;
+            font-weight: bold;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Mobile Recharge Portal</h2>
+
+    {% if success %}
+
+    <div class="result-box">
+
+        <h3>Recharge Successful</h3>
+
+        <p><b>Mobile Number:</b> {{ mobile_number }}</p>
+        <p><b>Operator Name:</b> {{ operator_name }}</p>
+
+        <hr>
+
+        <p><b>Recharge Amount:</b> ₹{{ recharge_amount }}</p>
+
+        <p class="success">Recharge Completed Successfully!</p>
+
+        <br>
+
+        <a href="/">Recharge Another Number</a>
+
+    </div>
+
+    {% else %}
+
+    <form action="/recharge" method="POST">
+
+        <label>Mobile Number</label>
+        <input type="text" name="mobile_number" required>
+
+        <label>Recharge Amount</label>
+        <input type="text" name="recharge_amount" required>
+
+        <label>Operator Name</label>
+        <input type="text" name="operator_name" required>
+
+        <br><br>
+
+        <button type="submit">Recharge Now</button>
+
+    </form>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

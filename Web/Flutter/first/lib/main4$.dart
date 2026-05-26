@@ -3,6 +3,16 @@ import 'dart:math' as math;
 // removed unused import 'dart:ui'
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+// Per-file Color compatibility shim (replaces deprecated withOpacity usage)
+extension ColorWithValues on Color {
+  Color withValues(double opacity) {
+    final int r = (value >> 16) & 0xFF;
+    final int g = (value >> 8) & 0xFF;
+    final int b = value & 0xFF;
+    return Color.fromRGBO(r, g, b, opacity.clamp(0.0, 1.0));
+  }
+}
+
 
 // ============================================================================
 // 1. CONSTANTS, ENUMS, & THEME
@@ -1597,7 +1607,7 @@ class _MapPainter extends CustomPainter {
       final carPaint = Paint()
         ..color = Colors.black
         ..style = PaintingStyle.fill;
-      final rect = Rect.fromCenter(center: drvPos, width: 24, height: 12);
+      // rect intentionally unused (kept for potential future hit testing)
 
       // Calculate rotation based on movement direction (simplified mock: pointing right default)
       // For a real app, track previous coordinate to calculate atan2 angle

@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Health Analyzer</title>
+
+    <style>
+      body {
+        font-family: Arial;
+        background-color: #f2f2f2;
+        padding: 30px;
+      }
+
+      .container {
+        width: 500px;
+        background: white;
+        margin: auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px gray;
+      }
+
+      input {
+        width: 95%;
+        padding: 10px;
+        margin: 8px 0;
+      }
+
+      button {
+        background-color: green;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      .result {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 8px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>BMI & Health Checker</h2>
+
+      {% if success %}
+
+      <div class="result">
+        <h3>Health Report</h3>
+
+        <p><b>Username:</b> {{ username }}</p>
+        <p><b>Weight:</b> {{ weight }} kg</p>
+        <p><b>Height:</b> {{ height }} m</p>
+
+        <hr />
+
+        <p><b>BMI:</b> {{ bmi }}</p>
+        <p><b>Health Category:</b> {{ category }}</p>
+
+        <br />
+
+        <a href="/">Check Again</a>
+      </div>
+
+      {% else %}
+
+      <form action="/bmi" method="POST">
+        <label>Username</label>
+        <input type="text" name="username" required />
+
+        <label>Password</label>
+        <input type="password" name="password" required />
+
+        <label>Weight (kg)</label>
+        <input type="text" name="weight" required />
+
+        <label>Height (m)</label>
+        <input type="text" name="height" required />
+
+        <br /><br />
+
+        <button type="submit">Calculate BMI</button>
+      </form>
+
+      {% endif %}
+    </div>
+  </body>
+</html>

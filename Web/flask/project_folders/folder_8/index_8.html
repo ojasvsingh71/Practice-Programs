@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Cinema Booking Portal</title>
+
+    <style>
+      body {
+        font-family: Arial;
+        background-color: #f2f2f2;
+        padding: 30px;
+      }
+
+      .container {
+        width: 500px;
+        background: white;
+        margin: auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px gray;
+      }
+
+      input {
+        width: 95%;
+        padding: 10px;
+        margin: 8px 0;
+      }
+
+      button {
+        background-color: darkorange;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      .result-box {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 8px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Movie Ticket Booking System</h2>
+
+      {% if success %}
+
+      <div class="result-box">
+        <h3>Booking Confirmation</h3>
+
+        <p><b>User Name:</b> {{ user_name }}</p>
+        <p><b>Movie Name:</b> {{ movie_name }}</p>
+
+        <hr />
+
+        <p><b>Number of Tickets:</b> {{ tickets }}</p>
+        <p><b>Ticket Price:</b> ₹{{ ticket_price }}</p>
+
+        <hr />
+
+        <h3>Total Bill: ₹{{ total_bill }}</h3>
+
+        <br />
+
+        <a href="/">Book Another Ticket</a>
+      </div>
+
+      {% else %}
+
+      <form action="/book" method="POST">
+        <label>User Name</label>
+        <input type="text" name="user_name" required />
+
+        <label>Movie Name</label>
+        <input type="text" name="movie_name" required />
+
+        <label>Number of Tickets</label>
+        <input type="text" name="tickets" required />
+
+        <label>Ticket Price</label>
+        <input type="text" name="ticket_price" required />
+
+        <br /><br />
+
+        <button type="submit">Book Tickets</button>
+      </form>
+
+      {% endif %}
+    </div>
+  </body>
+</html>

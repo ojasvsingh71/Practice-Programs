@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Voting Portal</title>
+
+    <style>
+      body {
+        font-family: Arial;
+        background-color: #f2f2f2;
+        padding: 30px;
+      }
+
+      .container {
+        width: 500px;
+        background: white;
+        margin: auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px gray;
+      }
+
+      input {
+        width: 95%;
+        padding: 10px;
+        margin: 8px 0;
+      }
+
+      button {
+        background-color: darkblue;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      .result {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 8px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+      }
+
+      .eligible {
+        color: green;
+        font-weight: bold;
+      }
+
+      .not-eligible {
+        color: red;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Online Voting Eligibility Checker</h2>
+
+      {% if success %}
+
+      <div class="result">
+        <h3>Voting Eligibility Result</h3>
+
+        <p><b>Name:</b> {{ name }}</p>
+        <p><b>Age:</b> {{ age }}</p>
+        <p><b>Aadhaar Number:</b> {{ aadhaar }}</p>
+
+        <hr />
+
+        {% if age >= 18 %}
+        <p class="eligible">{{ status }}</p>
+        {% else %}
+        <p class="not-eligible">{{ status }}</p>
+        {% endif %}
+
+        <br />
+
+        <a href="/">Check Another User</a>
+      </div>
+
+      {% else %}
+
+      <form action="/check" method="POST">
+        <label>Name</label>
+        <input type="text" name="name" required />
+
+        <label>Age</label>
+        <input type="text" name="age" required />
+
+        <label>Aadhaar Number</label>
+        <input type="text" name="aadhaar" required />
+
+        <br /><br />
+
+        <button type="submit">Check Eligibility</button>
+      </form>
+
+      {% endif %}
+    </div>
+  </body>
+</html>

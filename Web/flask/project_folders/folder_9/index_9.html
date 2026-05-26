@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Hotel Reservation Portal</title>
+
+    <style>
+      body {
+        font-family: Arial;
+        background-color: #f2f2f2;
+        padding: 30px;
+      }
+
+      .container {
+        width: 500px;
+        background: white;
+        margin: auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px gray;
+      }
+
+      input {
+        width: 95%;
+        padding: 10px;
+        margin: 8px 0;
+      }
+
+      button {
+        background-color: darkgreen;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      .receipt-box {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 8px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Hotel Room Booking System</h2>
+
+      {% if success %}
+
+      <div class="receipt-box">
+        <h3>Booking Receipt</h3>
+
+        <p><b>Guest Name:</b> {{ guest_name }}</p>
+        <p><b>Room Type:</b> {{ room_type }}</p>
+
+        <hr />
+
+        <p><b>Number of Days:</b> {{ days }}</p>
+        <p><b>Price per Day:</b> ₹{{ price_per_day }}</p>
+
+        <hr />
+
+        <h3>Total Room Rent: ₹{{ total_rent }}</h3>
+
+        <br />
+
+        <a href="/">Book Another Room</a>
+      </div>
+
+      {% else %}
+
+      <form action="/book" method="POST">
+        <label>Guest Name</label>
+        <input type="text" name="guest_name" required />
+
+        <label>Room Type</label>
+        <input type="text" name="room_type" required />
+
+        <label>Number of Days</label>
+        <input type="text" name="days" required />
+
+        <label>Price per Day</label>
+        <input type="text" name="price_per_day" required />
+
+        <br /><br />
+
+        <button type="submit">Book Room</button>
+      </form>
+
+      {% endif %}
+    </div>
+  </body>
+</html>
