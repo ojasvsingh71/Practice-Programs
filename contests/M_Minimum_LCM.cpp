@@ -10,16 +10,17 @@ int main() {
     while(t--){
         int n;
         cin>>n;
-        if(n%2==0){
-            cout<<n/2<<" "<<n/2<<"\n";
-        }else{
-            for(int i=n/2;i>=1;i-=2){
-                if((n-i)%i==0){
-                    cout<<i<<" "<<n-i<<"\n";
-                    break;
-                }
+
+        int bu=0;
+        // cout<<sqrt(n)<<" ";
+        for(int i=2;i<=sqrt(n);i++){
+            if(n%i==0){
+                cout<<n/i<<" "<<n-n/i<<"\n";
+                bu=1;
+                break;
             }
         }
+        if(!bu) cout<<1<<" "<<n-1<<"\n";
     }
     
     return 0;

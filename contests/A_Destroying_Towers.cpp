@@ -8,24 +8,17 @@ int main() {
     int t;
     cin>>t;
     while(t--){
-        int n,x;
-        cin>>n>>x;
-
+        int n;
+        cin>>n;
         vector<int> nums(n);
-        int maxi=0,mini=INT_MAX;
-        int len=x;
-
-        int ans=0;
+        int sum=0;
+        int mini=INT_MAX;
         for(int i=0;i<n;i++){
             cin>>nums[i];
-            maxi=max(maxi,nums[i]);
             mini=min(mini,nums[i]);
-            if(maxi-mini>2*x){
-                ans++;
-                maxi=mini=nums[i];
-            }
+            sum+=mini;
         }
-        cout<<ans<<"\n";
+        cout<<sum<<"\n";
     }
     
     return 0;

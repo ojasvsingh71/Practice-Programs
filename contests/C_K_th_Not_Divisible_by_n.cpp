@@ -11,18 +11,16 @@ int main() {
         long long n,k;
         cin>>n>>k;
 
-        if(k<n){
-            cout<<k<<"\n";
-        }else{
-            long long temp=k;
-            long long ans=0;
-            while(temp/n>0){
-                ans+=temp/n;
-                long long rem=temp%n;
-                temp=temp/n+rem;
-            }
-            cout<<k+ans<<"\n";
+        int ls=0,rs=2e9;
+
+        while(ls<rs){
+            long long mid=ls+(rs-ls)/2;
+
+            long long cnt=mid-mid/n;
+            if(cnt>=k) rs=mid;
+            else ls=mid+1;
         }
+        cout<<rs<<"\n";
     }
     
     return 0;

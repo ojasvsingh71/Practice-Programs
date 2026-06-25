@@ -11,7 +11,14 @@ int main() {
         int n;
         cin>>n;
 
-        
+        int num=1;
+        while((num<<1)<n) num=num<<1;
+
+        int back=num-1;
+        while(back>=0) cout<<back--<<" ";
+
+        while(num<n) cout<<num++<<" ";
+        cout<<"\n";
         
     }
     
