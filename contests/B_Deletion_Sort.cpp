@@ -11,19 +11,17 @@ int main() {
         int n;
         cin>>n;
         vector<int> nums(n);
+
+        int bu=0;
         for(int i=0;i<n;i++){
             cin>>nums[i];
+            if(i>0){
+                if(nums[i]<nums[i-1]) bu=1;
+            }
         }
-        
-        long long bu=0;
-        int ans=0;
-        for(int i=n-1;i>=0;i--){
-            bu+=nums[i];
-            if(bu>0) ans++;
-            bu=max((long long)0,bu);
-        }
-        cout<<ans<<"\n";
-    }  
+        if(bu) cout<<1<<"\n";
+        else cout<<n<<"\n";
+    }
     
     return 0;
 }

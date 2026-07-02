@@ -11,19 +11,20 @@ int main() {
         int n;
         cin>>n;
         vector<int> nums(n);
+        int bu=0;
+        unordered_map<int,int> freq;
         for(int i=0;i<n;i++){
             cin>>nums[i];
+            if(freq[nums[i]]) bu=1;
+            freq[nums[i]]++;
         }
-        
-        long long bu=0;
-        int ans=0;
-        for(int i=n-1;i>=0;i--){
-            bu+=nums[i];
-            if(bu>0) ans++;
-            bu=max((long long)0,bu);
+        if(bu) cout<<-1<<"\n";
+        else{
+            sort(nums.rbegin(),nums.rend());
+            for(int i:nums) cout<<i<<" ";
+            cout<<"\n";
         }
-        cout<<ans<<"\n";
-    }  
+    }
     
     return 0;
 }
