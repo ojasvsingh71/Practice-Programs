@@ -11,18 +11,13 @@ int main() {
         int n;
         cin>>n;
         vector<int> nums(n);
-        int bu=0;
-        int maxi=0;
-        for(int i=0;i<n;i++) {
+        int ss=0;
+        for(int i=0;i<n;i++){
             cin>>nums[i];
-            if(nums[i]>=maxi){
-                maxi=nums[i];
-                bu++;
-            }
+            if(nums[i]==67) ss++;
         }
-        cout<<bu<<"\n";
-
-        
+        if(ss) cout<<"YES\n";
+        else cout<<"NO\n";
     }
     
     return 0;

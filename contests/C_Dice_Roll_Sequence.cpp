@@ -11,18 +11,17 @@ int main() {
         int n;
         cin>>n;
         vector<int> nums(n);
-        int bu=0;
-        int maxi=0;
-        for(int i=0;i<n;i++) {
+        for(int i=0;i<n;i++){
             cin>>nums[i];
-            if(nums[i]>=maxi){
-                maxi=nums[i];
-                bu++;
+        }
+        int cnt=0;
+        for(int i=1;i<n;i++){
+            if(nums[i]+nums[i-1]==7 || nums[i]==nums[i-1]){
+                cnt++;
+                i++;
             }
         }
-        cout<<bu<<"\n";
-
-        
+        cout<<cnt<<"\n";
     }
     
     return 0;
