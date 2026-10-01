@@ -13,3 +13,4 @@ temp/
 *.json
 *.docx
 node_modules
+data/
